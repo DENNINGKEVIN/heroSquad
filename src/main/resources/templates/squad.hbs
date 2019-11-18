@@ -1,63 +1,19 @@
 {{#partial "content"}}
-    <section class="landing-pg">
-        <div class="land-left">
-        </div>
-        <div class="land-right">
-        </div>
-
-        <div class="squad">
-            <div id="newMember">
-                <p class="close">&cross;</p>
-                <h2>Choose Squad Members</h2>
-                {{#each heroes}}
-                    <div class="hero-item">
-                        <img src="/img/DIAMONDHEAD06_4C.png" alt="">
-                        <div class="hero-detail">
-                            <p>Name: {{name}}</p>
-                            <p>Super power: {{ power }}</p>
-                            <a class="btns" href="/squad/new/{{id}}">Add To Squad</a>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        <h2>
-            <a class="btns" href="/squad-form">Create Your Squad</a>
-            <br><br>
-            {{#if squads}}
-                AVAILABLE SQUADS
-            </h2>
-                {{#each squads}}
-                    <div class="squad-cont">
-                        <img src="" alt="">
-                        <div>
-                            <h1>{{ name }} </h1>
-                            <p>Purpose: {{cause}}</p>
-                            <p>Max participants: {{ maxSize }}</p>
-                            <br><br>
-                            <h3>MEMBERS</h3>
-                            <a class="btns" href="/new/member/{{squadId}}">Bind Id</a>
-                            <button class="addMember add-btn" >Add New Member</button>
-                            {{#each squadMembers}}
-                                <div class="member-cont">
-                                    <h5>Name: {{this.name}}</h5>
-                                    <h5>Power: {{specialPower}}</h5>
-                                    <Button class="btns">Remove</Button>
-                                </div>
-                            {{/each}}
-
-
-                        </div>
-                    </div>
-                {{/each}}
-            {{else}}
-                <h2>A LONE WOLF CANT FIGHT AN ENRAGED BEAST.CREATE SQUAD TO CONTINUE.</h2>
-            {{/if}}
-        </div>
-
-    </section>
+    {{#if editSquad}}
+        <h1>Edit squad details</h1>
+        <form action="/squads/{{squad.id}}" method="post">
+            <label for="name">Edit squad name</label>
+            <input id="newSquadName" name="newSquadName" type="text" value="{{squad.name}}">
+            <button type="submit" class="btn btn-primary">Go!</button>
+        </form>
+    {{else}}
+        <h1>Add a new Squad</h1>
+        <form action="/squads" method="post">
+            <label for="name">Squad Name</label>
+            <input id="name" name="name" type="text">
+            <button type="submit" class="btn btn-primary">Go!</button>
+        </form>
+    {{/if}}
 {{/partial}}
-{{#partial "footer"}}
-    <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script>
-    <script type="text/javascript" src="/js/script.js"></script>
-{{/partial}}
+
 {{> layout.hbs}}

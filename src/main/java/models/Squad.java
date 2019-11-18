@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Squad {
     String name;
@@ -17,6 +18,23 @@ public class Squad {
         this.id=instances.size();
         this.squadMembers = new ArrayList<>();
         instances.add(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Squad squad = (Squad) o;
+        return maxSize == squad.maxSize &&
+                id == squad.id &&
+                Objects.equals(name, squad.name) &&
+                Objects.equals(cause, squad.cause) &&
+                Objects.equals(squadMembers, squad.squadMembers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, cause, maxSize, id, squadMembers);
     }
 
     public String getName() {

@@ -1,16 +1,70 @@
 {{#partial "content"}}
-    <section class="landing-pg">
-        <div class="land-left"></div>
-        <div class="land-right"></div>
-        <form class="form" action="/new/hero" method="post">
-            <h1>Create Your Hero</h1>
-            <input type="text" placeholder="Enter your hero's name" name="name" required>
-            <input type="number" placeholder="Enter your hero's age" name="age" required>
-            <input type="text" placeholder="Enter your hero's special powers" name="power" required>
-            <input type="text" placeholder="Enter your hero's weakness" name="weakness" required>
 
-            <input class="btns" type="submit">
+    {{#if editHero}}
+        <h1>Edit Hero Details</h1>
+        <form action="/heroes/{{hero.id}}" method="post">
+            <label for="name">Hero's name</label>
+            <br>
+            <input id="name" name="name" type="text" value="{{hero.name}}">
+            <br><br>
+            <label for="age">Hero Age</label>
+            <br>
+            <input id="age" name="age" type="text" value="{{hero.age}}">
+            <br><br>
+            <label for="specialPower">Hero Special Power</label>
+            <br>
+            <input id="specialPower" name="specialPower" type="text" value="{{hero.specialPower}}">
+            <br><br>
+            <label for="weakness">Hero Weakness</label>
+            <br>
+            <input id="weakness" name="weakness" type="text" value="{{hero.weakness}}">
+            <br><br>
+            <label for="squadId">Update hero's squad:</label>
+            <br>
+            <select id="squadId" name="squadId">
+                {{#each squads}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select><br>
+            <p>Add a new Squad for the hero?<a href="/squads/new">Click Here</a></p>
+            <button type="submit" class="btn btn-primary">Go!</button>
         </form>
-    </section>
+    {{else}}
+        <h2>Add Hero</h2>
+
+        <form action="/heroes" method="post">
+            {{#if squads}}
+                <label for="name">Hero Name</label>
+                <br>
+                <input id="name" name="name" type="text">
+                <br><br>
+                <label for="age">Hero Age</label>
+                <br>
+                <input id="age" name="age" type="text">
+                <br><br>
+                <label for="specialPower">Hero Special Power</label>
+                <br>
+                <input id="specialPower" name="specialPower" type="text">
+                <br><br>
+                <label for="weakness">Hero Weakness</label>
+                <br>
+                <input id="weakness" name="weakness" type="text">
+                <br><br>
+                <label for="squadId">Select The Squad for the Hero:</label>
+                <br>
+                <select id="squadId" name="squadId">
+                    {{#each squads}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <br><br>
+                <p>Add a new Squad for the hero?<a href="/squads/new">Click Here</a></p>
+            {{else}}
+                <h3> Every hero must belong to a squad. <a href="/squads/new">Add one here.</a></h3>
+            {{/if}}
+            <button type="submit" class="btn btn-primary">Go!</button>
+        </form>
+    {{/if}}
 {{/partial}}
+
 {{> layout.hbs}}
