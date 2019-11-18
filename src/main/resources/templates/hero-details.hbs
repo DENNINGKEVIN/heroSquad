@@ -1,0 +1,36 @@
+{{#partial "content"}}
+    <section class="landing-pg">
+        <div class="land-left">
+        </div>
+        <div class="land-right">
+        </div>
+
+        <div class="hero-stats">
+            <h1>{{hero.name}}</h1>
+            <div class="hero-charts">
+                <div class="defence">Defence  <br><span class="def-cnt"></span></div>
+                <div class="distance">Speed <br><span class="dis-cnt"></span></div>
+                <div class="attack ">Attack<br><span class="at-cnt"></span></div>
+            </div><br><br>
+            <a href="/hero" ><button class="btns back">Go Back</button></a>
+        </div>
+
+    </section>
+{{/partial}}
+{{> layout.hbs}}
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="Hero's Image or Logo">
+    <div class="card-body">
+        <h5 class="card-title">{{Hero.name}}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{hero.name}} is {{hero.age}} Years old.</li>
+        <li class="list-group-item">{{hero.name}} Special Power is {{hero.specialPower}}.</li>
+        <li class="list-group-item">Sadly {{hero.name}} Weakness is {{hero.weakness}}.</li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">Delete Hero</a>
+        <a href="#" class="card-link">Add To Squad</a>
+    </div>
+</div>
