@@ -1,32 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{#block "title"}}Blog{{/block}}</title>
+{{#block "header"}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="/css/style.css">
+        <title>Document</title>
+    </head>
+    <body>
+    <header>
+        <hr class="nav-hr">
+        <a href="/"><img src="/img/her1.png"></a>
+        <nav>
+            <ul>
+                <a href="/"><li>Home</li></a>
+                <a href="/hero"><li>Hero</li></a>
+                <a href="/squad"><li>Squad</li></a>
+            </ul>
+        </nav>
+    </header>
+{{/block}}
 
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-</head>
-<body>
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="/heros/new">Add New Hero</a></li>
-    <li role="presentation"><a href="/heros/new">Add New Squad</a></li>
-</ul>
-<div class="container">
-    <!--begin main template-->
-    <div class="page-header">
-        <img src="/images/ico.jpg" width="70%">
-        <h1></WITH POWER COMES GREAT RESPONSIBILITY></h1>
-    </div>
-    l
+{{#block "content"}}
 
-    <div class="col-md-12">
-        {{#block "content"}}
-        {{/block}}
+{{/block}}
 
-    </div>
-</div>
-<!--end main template-->
 {{#block "footer"}}
+    <script src="/js/jquery-3.4.0.min.js"></script>
+    <script src="/js/script.js"></script>
     </body>
     </html>
 {{/block}}
