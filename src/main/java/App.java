@@ -3,24 +3,27 @@ import models.*;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
+import static spark.Spark.post;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-        get("/heros/delete", (req, res) -> {
+        //get: show new post form
+        get("/posts/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            Hero.clearAll();
-            res.redirect("/");
-            return null;
+            return new ModelAndView(model, "newHero.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/heros/:id/delete", (req, res) -> {
+        //post: process new post form
+        post("/posts/new", (req, res) -> { //URL to make new post on POST route
             Map<String, Object> model = new HashMap<>();
-            int idOfPostToDelete = Integer.parseInt(req.queryParams("id")); //pull id - must match route segment//
-            Hero.deleteHeroById(idOfPostToDelete);
-            res.redirect("/");
+
+            name = request.queryParams("name",0,"specialPower","weakness");
+            Hero newPost = new Hero(name);
+            model.put("post", newPost);
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
     }
 
