@@ -49,5 +49,5 @@ public class Squad {
     public int getId(){
         return this.id;
     }
-    l
+
 }
