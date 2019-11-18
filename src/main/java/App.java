@@ -15,5 +15,13 @@ public class App {
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        post("/heros/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfPostToDelete = Integer.parseInt(req.queryParams("id")); //pull id - must match route segment//
+            Hero.deleteHeroById(idOfPostToDelete);
+            res.redirect("/");
+        }, new HandlebarsTemplateEngine());
     }
+
 }
