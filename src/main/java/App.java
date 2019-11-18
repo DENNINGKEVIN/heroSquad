@@ -9,6 +9,11 @@ import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-
+        get("/heros/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Hero.clearAll();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }
