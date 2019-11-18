@@ -30,6 +30,35 @@ public class App {
             return new ModelAndView(model, "squad.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: show new hero form
+        get("/heroes/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String name=req.queryParams("name");
+            Hero hero=new Hero();
+           return new ModelAndView(model, "hero-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+//get: show an individual hero
+        get("/squads/:squad_id/heroes/:hero_id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHeroToFind = Integer.parseInt(req.params("hero_id"));
+           return new ModelAndView(model, "hero-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show heroes
+        get("/heroes",(req,res) -> {
+            Map<String, Object> model=new HashMap<>();
+
+        },new HandlebarsTemplateEngine());
+
+////update heroes
+//        post("/posts/new", (request, response) -> { //URL to make new post on POST route
+//            Map<String, Object> model = new HashMap<String, Object>();
+//            String name = request.queryParams("");
+//            Hero newHero = new Hero(name);
+//            return new ModelAndView(model, "success.hbs");
+//        }, new HandlebarsTemplateEngine());
+
 
 
 //        get("/hero",(req, res) ->{
@@ -37,12 +66,13 @@ public class App {
 //            return new ModelAndView(model, "hero.hbs");
 //        }, new HandlebarsTemplateEngine());
 //
-//        get("/hero",(req, res) ->{
-//            Map<String, Object> model = new HashMap<>();
-//            ArrayList<Hero> hero = Hero.getAll();
-//            model.put("hero",hero);
-//            return new ModelAndView(model, "hero.hbs");
-//        }, new HandlebarsTemplateEngine());
+        get("/hero",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Hero> hero = Hero.getAll();
+            model.put("hero",hero);
+            return new ModelAndView(model, "hero.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        get("/new/:id",(req, res) ->{
 //            Map<String, Object> model = new HashMap<>();
 //            int idOfHero = Integer.parseInt(req.params(":id"));

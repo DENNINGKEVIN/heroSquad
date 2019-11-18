@@ -1,0 +1,13 @@
+{{#partial}}
+<h1>ALL SQUADS</h1>
+{{#if squad }}
+  {{#each}}
+      {{squad.name}}
+      {{squad.cause}}
+      {{squad.maxsize}}
+  {{/each}}
+{{else}}
+    <p>No Squads Exist</p>
+{{/if}}
+{{/partial}}
+{{>layout}}
