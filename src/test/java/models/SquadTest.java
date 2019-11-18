@@ -1,9 +1,11 @@
 package models;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SquadTest {
     @After
@@ -48,6 +50,29 @@ public class SquadTest {
         String testSquad1 = testSquad.updateSquadById("banditFighters","fight bandits",10);
         assertEquals("banditFighters", testSquad.getName());
     }
+    public void deleteAllPostsDeletesAllPosts() throws Exception {
+        Squad testSquad = new Squad("bandits","banditry",10);
+        Squad testSquad1 = new Squad("ninjas","ninjitsu",4);
+        Squad.clearAll();
+        Assert.assertEquals(0, Squad.getAll().size());
+    }
+    @Test
+    public void deleteDeletesASpecificPost() throws Exception {
+        Squad testSquad = new Squad("bandits","banditry",10);
+        Squad testSquad1 = new Squad("ninjas","ninjitsu",4);
+        Squad.deleteHeroById(2);
+        Assert.assertEquals(1, Squad.getAll().size()); //one is left
+
+    }
+    @Test
+    public void testHero_hasAllPosts_true() throws Exception {
+        Squad testSquad = new Squad("bandits","banditry",10);
+        Squad testSquad1 = new Squad("ninjas","ninjitsu",4);
+        assertTrue(Squad.getAll().contains(testHero));
+        assertTrue(Squad.getAll().contains(testHero1));
+    }
+
+
 
 
 
