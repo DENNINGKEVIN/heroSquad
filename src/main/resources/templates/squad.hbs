@@ -30,10 +30,9 @@
                     <div class="squad-cont">
                         <img src="" alt="">
                         <div>
-                            <h1>{{ squadName }} </h1>
-                            <p>Id: {{squadId}}</p>
+                            <h1>{{ name }} </h1>
                             <p>Purpose: {{cause}}</p>
-                            <p>Max participants: {{ size }}</p>
+                            <p>Max participants: {{ maxSize }}</p>
                             <br><br>
                             <h3>MEMBERS</h3>
                             <a class="btns" href="/new/member/{{squadId}}">Bind Id</a>
@@ -41,7 +40,7 @@
                             {{#each squadMembers}}
                                 <div class="member-cont">
                                     <h5>Name: {{this.name}}</h5>
-                                    <h5>Power: {{power}}</h5>
+                                    <h5>Power: {{specialPower}}</h5>
                                     <Button class="btns">Remove</Button>
                                 </div>
                             {{/each}}
@@ -51,7 +50,7 @@
                     </div>
                 {{/each}}
             {{else}}
-                <h2>Please create a squad to continue</h2>
+                <h2>A LONE WOLF CANT FIGHT AN ENRAGED BEAST.CREATE SQUAD TO CONTINUE.</h2>
             {{/if}}
         </div>
 
