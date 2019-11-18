@@ -1,13 +1,17 @@
-{{#partial}}
-<h1>ALL SQUADS</h1>
-{{#if squad }}
-  {{#each}}
-      {{squad.name}}
-      {{squad.cause}}
-      {{squad.maxsize}}
-  {{/each}}
-{{else}}
-    <p>No Squads Exist</p>
-{{/if}}
+{{#partial "content"}}
+    {{#each squad}}
+        <p class="font-weight-bold">Name: {{ squad.name }}</p>
+        <p class="font-weight-bold">Cause: {{ squad.age }}</p>
+        <p class="font-weight-bold">maxSize: {{ squad.maxSize }}</p>
+
+
+        <p>
+            <a class="btn btn-outline-primary" href="/heroes/{{squadId}}/edit">Edit Squad Details</a>
+            <a class="btn btn-outline-danger" href="/heroes/{{squadId}}/delete">REMOVE SQUAD</a>
+        </p>
+    {{/each}}
+
+
 {{/partial}}
-{{>layout}}
+
+{{> layout.hbs}}

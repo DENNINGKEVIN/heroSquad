@@ -8,15 +8,17 @@ public class Hero {
     int age;
     String specialPower;
     String weakness;
+    private int squadId;
     private int id;
     private static ArrayList<Hero> instances = new ArrayList<>();
 
 
-    public Hero(String name,int age,String specialPower,String weakness){
+    public Hero(String name,int age,String specialPower,String weakness, int squadId){
         this.name=name;
         this.age=age;
         this.specialPower=specialPower;
         this.weakness=weakness;
+        this.squadId = squadId;
         this.id=instances.size();
         instances.add(this);
     }
@@ -58,6 +60,9 @@ public class Hero {
         return id;
     }
 
+    public static void addHero(Hero hero){
+        instances.add(hero);
+    }
     public static ArrayList<Hero> getAll() {
         return instances;
     }
@@ -78,4 +83,5 @@ public class Hero {
 
         return name;
     }
+
 }

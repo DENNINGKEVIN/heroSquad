@@ -1,19 +1,8 @@
-{{#partial "content"}}
-    {{#if editSquad}}
-        <h1>Edit squad details</h1>
-        <form action="/squads/{{squad.id}}" method="post">
-            <label for="name">Edit squad name</label>
-            <input id="newSquadName" name="newSquadName" type="text" value="{{squad.name}}">
-            <button type="submit" class="btn btn-outlline-darkRed">Create!</button>
-        </form>
-    {{else}}
-        <h1>Add a new Squad</h1>
-        <form action="/squads" method="post">
-            <label for="name">Squad Name</label>
-            <input id="name" name="name" type="text">
-            <button type="submit" class="btn btn-outline-dark" style="color:lightGreen;">Create!</button>
-        </form>
-    {{/if}}
-{{/partial}}
+{{#partial}}
+   <h1>All Squads</h1>
+    {{#each squads}}
+        <a value="{{id}}" href="/squads/{{squad.id}}">{{name}}</a>
+    {{/each}}
 
-{{> layout.hbs}}
+{{/partial}}
+{{>layout}}

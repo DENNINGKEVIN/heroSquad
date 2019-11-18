@@ -1,5 +1,5 @@
 {{#partial "content"}}
-
+{{#each hero}}
     <p class="font-weight-bold">Name: {{ hero.name }}</p>
     <p class="font-weight-bold">Age: {{ hero.age }}</p>
     <p class="font-weight-bold">Special Power: {{ hero.specialPower }}</p>
@@ -7,9 +7,11 @@
     <p class="font-weight-bold">Squad: {{ squad.name }}</p>
 
     <p>
-        <a class="btn btn-outline-primary" href="/heroes/{{hero.id}}/edit">Edit hero details</a>
-        <a class="btn btn-outline-danger" href="/heroes/{{hero.id}}/delete">REMOVE HERO</a>
+        <a class="btn btn-outline-primary" href="/heroes/{{id}}/edit">Edit Hero Details</a>
+        <a class="btn btn-outline-danger" href="/heroes/{{id}}/delete">REMOVE HERO</a>
     </p>
+{{/each}}
+
 
 {{/partial}}
 

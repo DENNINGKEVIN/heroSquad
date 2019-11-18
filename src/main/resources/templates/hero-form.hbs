@@ -32,7 +32,7 @@
     {{else}}
         <h2>Add Hero</h2>
 
-        <form action="/heroes" method="post">
+        <form action="/heroes/new" method="post">
             {{#if squads}}
                 <label for="name">Hero Name</label>
                 <br>
@@ -60,7 +60,7 @@
                 <br><br>
                 <p>Add a new Squad for the hero?<a href="/squads/new">Click Here</a></p>
             {{else}}
-                <h3> Every hero must belong to a squad. <a href="/squads/new">Add one here.</a></h3>
+                <h3> Every hero must belong to a squad. <a href="/squads/new">Click To Create</a></h3>
             {{/if}}
             <button type="submit" class="btn btn-primary">Go!</button>
         </form>

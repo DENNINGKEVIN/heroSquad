@@ -8,15 +8,14 @@ public class Squad {
     String cause;
     int maxSize;
     private int id;
-    private ArrayList<Hero>  squadMembers = new ArrayList<>();
     private static ArrayList<Squad> instances = new ArrayList<>();
+
 
     public Squad(String name,String cause,int maxSize){
         this.name=name;
         this.cause=cause;
         this.maxSize=maxSize;
         this.id=instances.size();
-        this.squadMembers = new ArrayList<>();
         instances.add(this);
     }
 
@@ -28,13 +27,13 @@ public class Squad {
         return maxSize == squad.maxSize &&
                 id == squad.id &&
                 Objects.equals(name, squad.name) &&
-                Objects.equals(cause, squad.cause) &&
-                Objects.equals(squadMembers, squad.squadMembers);
+                Objects.equals(cause, squad.cause) ;
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, cause, maxSize, id, squadMembers);
+        return Objects.hash(name, cause, maxSize, id);
     }
 
     public String getName() {
@@ -66,14 +65,12 @@ public class Squad {
         this.maxSize=maxSize;
         return name;
     }
+    public static void add(Squad squad){
+        instances.add(squad);
+    }
     public int getId(){
         return this.id;
-    }
-    public ArrayList<Hero> getSquadMembers(){
-        return squadMembers;
-    }
-    public void setSquadMembers(Hero newMember) {
-        squadMembers.add(newMember);
-    }
-    public void clearAllSquadMembers(){ getSquadMembers().clear(); }
+    };
+
+
 }
