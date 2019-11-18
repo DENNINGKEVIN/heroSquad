@@ -88,7 +88,7 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        
+
 
 
 
@@ -152,50 +152,6 @@ public class App {
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
-
-
-        //get: show a form to create a new squad
-//        get("/squad/id", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "squad-detail.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        get("/squads",(req,res) ->{
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "squad-form.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//
-//        //get: show new hero form
-//        get("/heroes/new", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            String name=req.queryParams("name");//
-//           return new ModelAndView(model, "hero-form.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//
-//        get("/new/:id",(req, res) ->{
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfHero = Integer.parseInt(req.params(":id"));
-//            Hero foundHero = Hero.getHeroById(idOfHero);
-//            model.put("hero",foundHero);
-//            return new ModelAndView(model, "more.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        post("/new/hero",(req, res) ->{
-//            Map<String, Object> model = new HashMap<>();
-//            String name = req.queryParams("heroName");
-//            Integer age = Integer.parseInt(req.queryParams("heroAge"));
-//            String power = req.queryParams("superPower");
-//            String weakness = req.queryParams("weakness");
-//            Hero newHero = new Hero(name,age,power,weakness);
-//            req.session().attribute("item",name);
-//            model.put("item",req.session().attribute("item"));
-//            model.put("newHero",newHero);
-//            return new ModelAndView(model, "success.hbs");
-//        }, new HandlebarsTemplateEngine());
-
-
 
     }
 }
