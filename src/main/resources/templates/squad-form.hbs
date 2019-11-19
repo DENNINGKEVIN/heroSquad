@@ -1,20 +1,20 @@
 {{#partial "content"}}
     {{#if editSquad}}
         <h1>Edit squad details</h1>
-        <form action="/squads/new" method="post">
+        <form action="/squads/{{editSquad.id}}" method="post">
             <div class="row">
                 <div class="col-md-12">
                     <label for="name">Squad Name</label>
-                    <input id="name" name="name" type="text">
+                    <input id="name" name="name" type="text" value="{{editSquad.name}}">
                 </div>
                 <div class="col-md-12">
                     <label for="size">Max Size</label>
-                    <input id="size" name="size" type="number">
+                    <input id="maxSize" name="maxSize" type="number" value="{{editSquad.maxSize}}">
                 </div>
                 <div class="col-md-12">
 
                     <label for="cause">Cause</label>
-                    <input id="cause" name="cause" type="text">
+                    <input id="cause" name="cause" type="text" value="{{editSquad.cause}}">
                 </div>
             </div>
 

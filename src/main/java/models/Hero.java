@@ -75,13 +75,11 @@ public class Hero {
     public void deleteHeroById(){
          instances.remove(id-1);
     }
-    public String updateHeroById(String name,int age,String specialPower,String weakness){
-        this.name =name;
+    public void update(String name,int age,String specialPower,String weakness){
+        this.name=name;
         this.age=age;
         this.specialPower=specialPower;
         this.weakness=weakness;
-
-        return name;
     }
 
 }

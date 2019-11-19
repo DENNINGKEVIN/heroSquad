@@ -59,11 +59,10 @@ public class Squad {
     public void  deleteSquadById(){
          instances.remove(id-1);
     }
-    public static void Squad updateSquadById(int id,Squad squad){
-
-
-
-
+    public void update(String name,String cause,int maxSize){
+        this.name=name;
+        this.cause=cause;
+        this.maxSize=maxSize;
     }
     public static void add(Squad squad){
         instances.add(squad);

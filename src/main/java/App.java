@@ -19,13 +19,31 @@ public class App {
        Hero newHero =new Hero("Superman",30,"Lazer Eyes","Cryptonite",1);
        Hero.addHero(newHero);
 
-       //show all posts
+       //show home page
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             ArrayList<Hero> heroes = Hero.getAll();
             model.put("heroes",heroes);
             model.put("squads",Squad.getAllSquads());
             return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get all heroes
+        get("/heroes",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Hero> heroes = Hero.getAll();
+            model.put("heroes",heroes);
+            model.put("squads",Squad.getAllSquads());
+            return new ModelAndView(model, "hero.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get all squads
+        get("/squads",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Hero> heroes = Hero.getAll();
+            model.put("heroes",heroes);
+            model.put("squads",Squad.getAllSquads());
+            return new ModelAndView(model, "squad.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get squad by id
@@ -46,26 +64,6 @@ public class App {
             model.put("squads",foundSquad);
             model.put("squads",Squad.getAllSquads());
             return new ModelAndView(model, "hero-details.hbs");
-        }, new HandlebarsTemplateEngine());
-
-
-       //get all heroes
-        get("/heroes",(req, res) ->{
-            Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
-            return new ModelAndView(model, "hero.hbs");
-        }, new HandlebarsTemplateEngine());
-
-
-       //get all squads
-        get("/squads",(req, res) ->{
-            Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
-            return new ModelAndView(model, "squad.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show new heroes form
@@ -139,23 +137,19 @@ public class App {
         //get: delete all heroes
         get("/heroes/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            Hero.clearAllPosts();
+            Hero.clearAll();
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: delete all squads
         get("/squads/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            Post.clearAllPosts();
+            Squad.clearAll();
             return new ModelAndView(model, "success.hbs");
-            return null;
         }, new HandlebarsTemplateEngine());
 
-
-
-
-
-        post("/posts/squads/new",(req, res) ->{
+        //process new squadform
+        post("/squads/new",(req, res) ->{
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String cause = req.queryParams("cause");
@@ -168,8 +162,8 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-
-        post("/posts/heroes/new",(req, res) ->{
+        //process new hero form
+        post("/heroes/new",(req, res) ->{
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String power = req.queryParams("specialPower");
@@ -181,23 +175,23 @@ public class App {
             ArrayList<Hero> heroes = Hero.getAll();
             model.put("heroes",heroes);
             model.put("squads",Squad.getAllSquads());
-            res.redirect("/");
-            return null;
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/squads/:id/edit",(req, res) ->{
+        //post: process a form to update a post
+        post("/posts/:id/update", (req, res) -> { //URL to make new post on POST route
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String cause = req.queryParams("cause");
-            int maxSize = Integer.parseInt(req.queryParams("size"));
+            int maxSize = Integer.parseInt(req.queryParams("maxSize"));
             int idOfTaskToEdit = Integer.parseInt(req.params("id"));
             Squad squad = new Squad(name, cause, maxSize);
-            Squad.updateSquadById(idOfTaskToEdit, squad);
-            res.redirect("/");
-            return null;
+            squad.update(name,cause,maxSize);
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/heroes/:id/edit",(req, res) ->{
+        //post: process a form to update a post
+        post("/posts/:id/update", (req, res) -> { //URL to make new post on POST route
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String power = req.queryParams("specialPower");
@@ -205,13 +199,10 @@ public class App {
             int age = Integer.parseInt(req.queryParams("age"));
             int squadId = Integer.parseInt(req.queryParams("squadId"));
             Hero hero = new Hero(name, age, power, weakness, squadId);
-            Hero.addHero(hero);
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
-            res.redirect("/");
-            return null;
+            hero.update(name,age,power,weakness);
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
+
 
     }
 }
