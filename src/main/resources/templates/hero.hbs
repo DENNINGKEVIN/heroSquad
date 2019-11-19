@@ -1,15 +1,18 @@
-{{#partial}}
+{{#partial "content"}}
 
 <h1>ALl Heroes</h1>
 {{#if heroes}}
-    {{#each hero}}
-        <ul>
-           <li> <a href="/hero-details/{{id}}">{{name}}</a> </li>
+    <div class="row">
+        <ul >
+            {{#each heroes}}
+                <li><a href="/hero-details/{{id}}">{{name}}</a></li>
+            {{/each}}
         </ul>
-    {{/each}}
+
+    </div>
 {{else}}
-    <p style="color:black;">No Heroes Yet.</p>
+    <p style="color:white;">No Heroes Yet.</p>
 {{/if}}
 
 {{/partial}}
-{{>layout}}
+{{> layout.hbs }}

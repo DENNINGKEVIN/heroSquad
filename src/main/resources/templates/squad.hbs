@@ -1,8 +1,13 @@
-{{#partial squad}}
+{{#partial "content"}}
    <h1>All Squads</h1>
-    {{#each squads}}
-        <a value="{{id}}" href="/squads/{{squad.id}}">{{name}}</a>
-    {{/each}}
+   <div class="row">
+       <ul >
+           {{#each squads}}
+               <li><a href="/squad-details/{{id}}">{{name}}</a></li>
+           {{/each}}
+       </ul>
+
+   </div>
 
 {{/partial}}
-{{>layout}}
+{{>layout.hbs}}

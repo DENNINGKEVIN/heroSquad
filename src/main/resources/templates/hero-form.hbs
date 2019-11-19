@@ -1,51 +1,20 @@
 {{#partial "content"}}
 
-    {{#if editHero}}
-        <h1>Edit Hero Details</h1>
-        <form action="/heroes/{{editHero.id}}/update" method="post">
-            <label for="name">Hero's name</label>
-            <br>
-            <input id="name" name="name" type="text" value="{{editHero.name}}">
-            <br><br>
-            <label for="age">Hero Age</label>
-            <br>
-            <input id="age" name="age" type="text" value="{{editHero.age}}">
-            <br><br>
-            <label for="specialPower">Hero Special Power</label>
-            <br>
-            <input id="specialPower" name="specialPower" type="text" value="{{hero.specialPower}}">
-            <br><br>
-            <label for="weakness">Hero Weakness</label>
-            <br>
-            <input id="weakness" name="weakness" type="text" value="{{editHero.weakness}}">
-            <br><br>
-            <label for="squadId">Update hero's squad:</label>
-            <br>
-            <select id="squadId" name="squadId">
-                {{#each squads}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/each}}
-            </select><br>
-            <p>Add a new Squad for the hero?<a href="/squads/new">Click Here</a></p>
-            <button type="submit" class="btn btn-primary">Go!</button>
-        </form>
-    {{else}}
         <h2>Add Hero</h2>
 
-        <form action="/heroes/{{editHero.id}}/update" method="post">
-            {{#if squads}}
+        <form action="/posts/heroes/new" method="post" >
                 <label for="name">Hero Name</label>
-                <input id="name" name="name" type="text">
+                <input id="name" name="name" type="text" >
             <br>
                 <label for="age">Hero Age</label>
-                <input id="age" name="age" type="text">
+                <input id="age" name="age" type="number">
 
                 <br>
                 <label for="specialPower">Hero Special Power</label>
-                <input id="specialPower" name="specialPower" type="text">
+                <input id="specialPower" name="specialPower" type="text" >
                 <br>
                 <label for="weakness">Hero Weakness</label>
-                <input id="weakness" name="weakness" type="text">
+                <input id="weakness" name="weakness" type="text" >
                 <br>
                 <label for="squadId">Select The Squad for the Hero:</label>
                 <select id="squadId" name="squadId">
@@ -54,13 +23,11 @@
                     {{/each}}
                 </select>
                 <br><br>
-                <p>Add a new Squad for the hero?<a href="/squads/new">Click Here</a></p>
-            {{else}}
-                <h3> Every hero must belong to a squad. <a href="/squads/new">Click To Create</a></h3>
-            {{/if}}
-            <button type="submit" class="btn btn-primary">Go!</button>
+                <p>Add a new Squad for the hero?<a href="/posts/squads/new">Click Here</a></p>
+
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
-    {{/if}}
+
 {{/partial}}
 
 {{> layout.hbs}}

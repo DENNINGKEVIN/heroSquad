@@ -19,8 +19,9 @@ public class Hero {
         this.specialPower=specialPower;
         this.weakness=weakness;
         this.squadId = squadId;
-        this.id=instances.size();
         instances.add(this);
+        this.id=instances.size();
+
     }
 
     @Override
@@ -60,9 +61,13 @@ public class Hero {
         return id;
     }
 
-    public static void addHero(Hero hero){
-        instances.add(hero);
+    public int getSquadId() {
+        return squadId;
     }
+
+//    public static void addHero(Hero hero){
+//        instances.add(hero);
+//    }
     public static ArrayList<Hero> getAll() {
         return instances;
     }

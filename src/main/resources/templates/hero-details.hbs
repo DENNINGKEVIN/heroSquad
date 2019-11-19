@@ -1,17 +1,22 @@
 {{#partial "content"}}
-{{#each hero}}
-    <p class="font-weight-bold">Name: {{ hero.name }}</p>
-    <p class="font-weight-bold">Age: {{ hero.age }}</p>
-    <p class="font-weight-bold">Special Power: {{ hero.specialPower }}</p>
-    <p class="font-weight-bold">Weakness: {{ hero.weakness }}</p>
-    <p class="font-weight-bold">Squad: {{ squad.name }}</p>
+<div class="row">
+    <ul >
 
-    <p>
-        <a class="btn btn-outline-primary" href="/heroes/{{id}}/edit">Edit Hero Details</a>
-        <a class="btn btn-outline-danger" href="/heroes/{{id}}/delete">REMOVE HERO</a>
-    </p>
-{{/each}}
+        {{#if foundHero}}
+            <p class="font-weight-bold">Name: {{ foundHero.name }}</p>
+            <p class="font-weight-bold">Age: {{ foundHero.age }}</p>
+            <p class="font-weight-bold">Special Power: {{ foundHero.specialPower }}</p>
+            <p class="font-weight-bold">Weakness: {{ foundHero.weakness }}</p>
+            <p class="font-weight-bold">Squad: {{ foundHero.name }}</p>
 
+            <p>
+                <a class="btn btn-outline-primary" href="/hero/{{id}}/update">Edit Hero Details</a>
+                <a class="btn btn-outline-danger" href="/heroes/{{id}}/delete">REMOVE HERO</a>
+            </p>
+        {{/if}}
+    </ul>
+
+</div>
 
 {{/partial}}
 

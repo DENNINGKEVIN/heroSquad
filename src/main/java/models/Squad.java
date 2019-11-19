@@ -15,8 +15,9 @@ public class Squad {
         this.name=name;
         this.cause=cause;
         this.maxSize=maxSize;
-        this.id=instances.size();
         instances.add(this);
+        this.id=instances.size();
+
     }
 
     @Override
@@ -64,9 +65,9 @@ public class Squad {
         this.cause=cause;
         this.maxSize=maxSize;
     }
-    public static void add(Squad squad){
-        instances.add(squad);
-    }
+//    public static void add(Squad squad){
+//        instances.add(squad);
+//    }
     public int getId(){
         return this.id;
     };
