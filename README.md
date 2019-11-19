@@ -1,6 +1,6 @@
 # HERO SQUAD
 #### A web app for creating fictional characters (heroes) and placing them in squads
-#### By **Laurent Juma**
+#### By **Denning Kevin Mulama**
 ## Description
 This is a web app which enables the user to create his/her fictional characters and assign them to squads
 
