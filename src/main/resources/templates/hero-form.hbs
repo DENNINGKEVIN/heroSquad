@@ -2,14 +2,14 @@
 
     {{#if editHero}}
         <h1>Edit Hero Details</h1>
-        <form action="/heroes/{{hero.id}}" method="post">
+        <form action="/heroes/{{editHero.id}}/update" method="post">
             <label for="name">Hero's name</label>
             <br>
-            <input id="name" name="name" type="text" value="{{hero.name}}">
+            <input id="name" name="name" type="text" value="{{editHero.name}}">
             <br><br>
             <label for="age">Hero Age</label>
             <br>
-            <input id="age" name="age" type="text" value="{{hero.age}}">
+            <input id="age" name="age" type="text" value="{{editHero.age}}">
             <br><br>
             <label for="specialPower">Hero Special Power</label>
             <br>
@@ -17,7 +17,7 @@
             <br><br>
             <label for="weakness">Hero Weakness</label>
             <br>
-            <input id="weakness" name="weakness" type="text" value="{{hero.weakness}}">
+            <input id="weakness" name="weakness" type="text" value="{{editHero.weakness}}">
             <br><br>
             <label for="squadId">Update hero's squad:</label>
             <br>
@@ -32,26 +32,22 @@
     {{else}}
         <h2>Add Hero</h2>
 
-        <form action="/heroes/new" method="post">
+        <form action="/heroes/{{editHero.id}}/update" method="post">
             {{#if squads}}
                 <label for="name">Hero Name</label>
-                <br>
                 <input id="name" name="name" type="text">
-                <br><br>
+            <br>
                 <label for="age">Hero Age</label>
-                <br>
                 <input id="age" name="age" type="text">
-                <br><br>
+
+                <br>
                 <label for="specialPower">Hero Special Power</label>
-                <br>
                 <input id="specialPower" name="specialPower" type="text">
-                <br><br>
+                <br>
                 <label for="weakness">Hero Weakness</label>
-                <br>
                 <input id="weakness" name="weakness" type="text">
-                <br><br>
-                <label for="squadId">Select The Squad for the Hero:</label>
                 <br>
+                <label for="squadId">Select The Squad for the Hero:</label>
                 <select id="squadId" name="squadId">
                     {{#each squads}}
                         <option value="{{id}}">{{name}}</option>

@@ -185,8 +185,8 @@ public class App {
             String cause = req.queryParams("cause");
             int maxSize = Integer.parseInt(req.queryParams("maxSize"));
             int idOfTaskToEdit = Integer.parseInt(req.params("id"));
-            Squad squad = new Squad(name, cause, maxSize);
-            squad.update(name,cause,maxSize);
+            Squad editSquad = new Squad(name, cause, maxSize);
+            editSquad.update(name,cause,maxSize);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -198,8 +198,8 @@ public class App {
             String weakness = req.queryParams("weakness");         ;
             int age = Integer.parseInt(req.queryParams("age"));
             int squadId = Integer.parseInt(req.queryParams("squadId"));
-            Hero hero = new Hero(name, age, power, weakness, squadId);
-            hero.update(name,age,power,weakness);
+            Hero editHero = new Hero(name, age, power, weakness, squadId);
+            editHero.update(name,age,power,weakness);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
