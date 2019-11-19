@@ -178,8 +178,8 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: process a form to update a post
-        post("/posts/:id/update", (req, res) -> { //URL to make new post on POST route
+        //post: process a form to update a squad
+        post("/squads/:id/update", (req, res) -> { //URL to make new post on POST route
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String cause = req.queryParams("cause");
@@ -190,8 +190,8 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: process a form to update a post
-        post("/posts/:id/update", (req, res) -> { //URL to make new post on POST route
+        //post: process a form to update a hero
+        post("/heroes/:id/update", (req, res) -> { //URL to make new post on POST route
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String power = req.queryParams("specialPower");

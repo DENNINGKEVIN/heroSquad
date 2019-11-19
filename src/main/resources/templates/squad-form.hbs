@@ -1,7 +1,7 @@
 {{#partial "content"}}
     {{#if editSquad}}
         <h1>Edit squad details</h1>
-        <form action="/squads/{{editSquad.id}}" method="post">
+        <form action="/squads/{{editSquad.id}}/update" method="post">
             <div class="row">
                 <div class="col-md-12">
                     <label for="name">Squad Name</label>
@@ -18,12 +18,10 @@
                 </div>
             </div>
 
-            <a href="posts/squads/new" style="color:darkRed"; class="btn btn-outline-dark btn-lg">Create </a>
 
-        </form>
     {{else}}
         <h1>Add a New Squad</h1>
-        <form action="/squads/new" method="post">
+
             <div class="row">
                 <div class="col-md-12">
                     <label for="name">Squad Name</label>
@@ -39,11 +37,12 @@
                     <input id="cause" name="cause" type="text">
                 </div>
             </div>
-
-            <a href="/posts/squads/new" style="color:darkRed"; class="btn btn-outline-dark btn-lg">Create</a>
+    {{/if}}
+        <button type="submit" class="btn btn-outline-dark btn-lg">Go!</button>
+<!--            <a href="/posts/squads/new" style="color:darkRed"; class="btn btn-outline-dark btn-lg">Create</a>-->
 
         </form>
-    {{/if}}
+
 {{/partial}}
 
 {{> layout.hbs}}
