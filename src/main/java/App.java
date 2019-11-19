@@ -19,6 +19,7 @@ public class App {
        Hero newHero =new Hero("Superman",30,"Lazer Eyes","Cryptonite",1);
        Hero.addHero(newHero);
 
+       //show all posts
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             ArrayList<Hero> heroes = Hero.getAll();
@@ -27,7 +28,28 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get squad by id
+        get("/squads/:id",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            int idOfSquad=Integer.parseInt(req.params("id"));
+            Squad foundSquad=Squad.getSquadById(idOfSquad);
+            model.put("squads",foundSquad);
+            model.put("squads",Squad.getAllSquads());
+            return new ModelAndView(model, "squad-details.hbs");
+        }, new HandlebarsTemplateEngine());
 
+        //get hero by id
+        get("/heroes/:id",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            int idOfSquad=Integer.parseInt(req.params("id"));
+            Squad foundSquad=Squad.getSquadById(idOfSquad);
+            model.put("squads",foundSquad);
+            model.put("squads",Squad.getAllSquads());
+            return new ModelAndView(model, "hero-details.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+       //get all heroes
         get("/heroes",(req, res) ->{
             Map<String, Object> model = new HashMap<>();
             ArrayList<Hero> heroes = Hero.getAll();
@@ -36,23 +58,9 @@ public class App {
             return new ModelAndView(model, "hero.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/heroes/new",(req, res) ->{
-            Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
-            return new ModelAndView(model, "hero-form.hbs");
-        }, new HandlebarsTemplateEngine());
 
-        get("/squads/new",(req, res) ->{
-            Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
-            return new ModelAndView(model, "squad-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        get("/squads/:id",(req, res) ->{
+       //get all squads
+        get("/squads",(req, res) ->{
             Map<String, Object> model = new HashMap<>();
             ArrayList<Hero> heroes = Hero.getAll();
             model.put("heroes",heroes);
@@ -60,31 +68,86 @@ public class App {
             return new ModelAndView(model, "squad.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show new heroes form
+        get("/heroes/new",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "hero-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show new squads form
+        get("/squads/new",(req, res) ->{
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "squad-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show individual hero
         get("/hero-details/:id",(req, res) ->{
             Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
+            int idOfHeroToFind = Integer.parseInt(req.params("id"));
+            Hero foundHero = Hero.getHeroById(idOfHeroToFind);
+            model.put("heroes",foundHero);
             model.put("squads",Squad.getAllSquads());
             return new ModelAndView(model, "hero-details.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/squads/delete", (req, res) -> {
+        //show individual squad
+        get("/squad-details/:id",(req, res) ->{
             Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
+            int idOfSquadToFind = Integer.parseInt(req.params("id"));
+            Squad foundSquad = Squad.getSquadById(idOfSquadToFind);
+            model.put("squads",foundSquad);
             model.put("squads",Squad.getAllSquads());
-            Squad.clearAll();
-            res.redirect("/squads");
-            return null;
+            return new ModelAndView(model, "squad-details.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: show a form to update a hero
+        get("/hero/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHeroToEdit = Integer.parseInt(req.params("id"));
+            Hero editHero = Hero.getHeroById(idOfHeroToEdit);
+            model.put("editHero", editHero);
+            return new ModelAndView(model, "hero-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a hero
+        get("/squad/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfSquadToEdit = Integer.parseInt(req.params("id"));
+            Hero editSquad = Hero.getHeroById(idOfSquadToEdit);
+            model.put("editSquad", editSquad);
+            return new ModelAndView(model, "squad-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete an individual squuad
+        get("/squads/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfSquadToDelete = Integer.parseInt(req.params("id")); //pull id - must match route segment
+            Squad deletePost = Squad.getSquadById(idOfSquadToDelete); //use it to find post
+            deletePost.deleteSquadById();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete an individual hero
+        get("/heroes/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHeroToDelete = Integer.parseInt(req.params("id")); //pull id - must match route segment
+            Hero deleteHero = Hero.getHeroById(idOfHeroToDelete); //use it to find post
+            deleteHero.deleteHeroById();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all heroes
         get("/heroes/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
-            Hero.clearAll();
-            res.redirect("/squads");
+            Hero.clearAllPosts();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all squads
+        get("/squads/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Post.clearAllPosts();
+            return new ModelAndView(model, "success.hbs");
             return null;
         }, new HandlebarsTemplateEngine());
 
@@ -102,8 +165,7 @@ public class App {
             ArrayList<Hero> heroes = Hero.getAll();
             model.put("heroes",heroes);
             model.put("squads",Squad.getAllSquads());
-            res.redirect("/");
-            return null;
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -128,11 +190,9 @@ public class App {
             String name = req.queryParams("name");
             String cause = req.queryParams("cause");
             int maxSize = Integer.parseInt(req.queryParams("size"));
+            int idOfTaskToEdit = Integer.parseInt(req.params("id"));
             Squad squad = new Squad(name, cause, maxSize);
-            Squad.add(squad);
-            ArrayList<Hero> heroes = Hero.getAll();
-            model.put("heroes",heroes);
-            model.put("squads",Squad.getAllSquads());
+            Squad.updateSquadById(idOfTaskToEdit, squad);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());

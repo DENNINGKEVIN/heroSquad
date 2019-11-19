@@ -72,8 +72,8 @@ public class Hero {
     public static Hero getHeroById(int id){
         return instances.get(id-1);
     }
-    public static Hero deleteHeroById(int id){
-        return instances.remove(id-1);
+    public void deleteHeroById(){
+         instances.remove(id-1);
     }
     public String updateHeroById(String name,int age,String specialPower,String weakness){
         this.name =name;

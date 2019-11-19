@@ -56,14 +56,14 @@ public class Squad {
     public static Squad getSquadById(int id){
         return instances.get(id-1);
     }
-    public static Squad deleteSquadById(int id){
-        return instances.remove(id-1);
+    public void  deleteSquadById(){
+         instances.remove(id-1);
     }
-    public String updateSquadById(String name ,String cause,int maxSize){
-        this.name = name;
-        this.cause=cause;
-        this.maxSize=maxSize;
-        return name;
+    public static void Squad updateSquadById(int id,Squad squad){
+
+
+
+
     }
     public static void add(Squad squad){
         instances.add(squad);
