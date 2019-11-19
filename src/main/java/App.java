@@ -101,7 +101,7 @@ public class App {
             int idOfHeroToEdit = Integer.parseInt(req.params("id"));
             Hero editHero = Hero.getHeroById(idOfHeroToEdit);
             model.put("editHero", editHero);
-            return new ModelAndView(model, "hero-form.hbs");
+            return new ModelAndView(model, "hero-update.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a hero
@@ -110,7 +110,7 @@ public class App {
             int idOfSquadToEdit = Integer.parseInt(req.params("id"));
             Hero editSquad = Hero.getHeroById(idOfSquadToEdit);
             model.put("editSquad", editSquad);
-            return new ModelAndView(model, "squad-form.hbs");
+            return new ModelAndView(model, "squad-update.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: delete an individual squuad
