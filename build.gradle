@@ -24,7 +24,7 @@ dependencies {
     compile 'com.sparkjava:spark-template-velocity:2.5.5'
 
 }
-applicationName = "heroSquad"
+applicationName = "hoodheroes1"
 mainClassName = 'App'
 task stage(dependsOn: ['clean', 'installDist'])
 
